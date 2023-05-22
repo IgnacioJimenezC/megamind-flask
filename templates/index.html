@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>megamind</title>
+</head>
+ 
+<body>
+    <datalist id="colores">
+        <option>#daf7a6</option>
+        <option>#ff5733</option>
+        <option>#581845</option>
+        <option>#f1948a</option>
+   </datalist>
+    <h2>bienvenido a megamind</h2>
+    <img src="/static/images/no_bitches.jpg" width="300" height="300">
+ <!-- this section can be replaced by a child document -->  
+{% block body %}
+    <h1>Adversario</h1>
+    <form>
+        {%for color in intento_adversario%}
+        <input disabled type="color" value="color[color]">
+        {%endfor%}
+    </form>
+    <br>
+    <br>
+    
+    <form method="post">
+        <input type="color" name="color1" list="colores">
+        <input type="color" name="color2" list="colores">
+        <input type="color" name="color3" list="colores">
+        <input type="color" name="color4" list="colores">
+        <input type="submit">
+    </form>
+
+   <h1>Tus intentos</h1>
+    <br>
+    {%for intento in intentos %}
+        <form>
+            <input disabled type="color" value="{{intento[0]}}">
+            <input disabled type="color" value="{{intento[1]}}">
+            <input disabled type="color" value="{{intento[2]}}">
+            <input disabled type="color" value="{{intento[3]}}">
+        </form>
+    {%endfor%}
+
+{% endblock %}
+ 
+ 
+</body>
+ 
+</html>
