@@ -14,14 +14,11 @@
    </datalist>
     <h2>bienvenido a megamind</h2>
     <img src="/static/images/no_bitches.jpg" width="300" height="300">
+
  <!-- this section can be replaced by a child document -->  
 {% block body %}
-    <h1>Adversario</h1>
-    <form>
-        {%for color in intento_adversario%}
-        <input disabled type="color" value="color[color]">
-        {%endfor%}
-    </form>
+    <h1>{{ganador_jugador}}</h1>
+    <h1></h1> <!--Esta parte se puede refactorizar-->
     <br>
     <br>
     
