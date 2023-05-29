@@ -28,14 +28,18 @@ def comprobador_aciertos(intento:list,secreto:list):
              resultado.append("#ffff00") # no coincide pero está en el secreto
         else:
             resultado.append("#ff4500")  # No coincide: color naranja
-    return resultado
+    if resultado == ["#00ff61","#00ff61","#00ff61","#00ff61"]:
+        return ("VICTORIA",resultado)
+    else:
+        return resultado
 
-def fucking_partida():
-     return
 
 secreto = generador_secretos(COLOR)
+
+
 @app.route('/', methods=["GET", "POST"])
 def index():
+    
     if request.method == "POST":
         intento_actual = [
             request.form["color1"],
@@ -43,9 +47,11 @@ def index():
             request.form["color3"],
             request.form["color4"]
         ]
+        comprobar_intento = comprobador_aciertos(intento_actual, secreto)
+
         intento_sin_comprobar = intento_maquina()
         intento_adversario = comprobador_aciertos(intento_sin_comprobar, secreto)
-        comprobar_intento = comprobador_aciertos(intento_actual, secreto)
+    
         if len(intentos_adversario) == 4:
             intentos_adversario.pop(0)
             intentos_adversario.append(intento_adversario)
@@ -57,5 +63,6 @@ def index():
         else:
             intentos.append(comprobar_intento)
     return render_template("index.html", intentos=intentos, intentos_adversario=intentos_adversario)
+
 if __name__ == "__main__":
     app.run()
